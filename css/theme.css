@@ -1,0 +1,41 @@
+.container {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    width: 100%;
+}
+
+.logo {
+    background: url(../images/logo.png) no-repeat;
+    background-size: 100%;
+    background-position: 50% 50%;
+}
+
+.nav-item {
+    width: 50px;
+    height: 42px;
+    line-height: 42px;
+}
+
+#header {
+    height: 50px;
+}
+
+#body-container {
+    flex-wrap: wrap;
+}
+
+img {
+    width: 100%;
+}
+
+#footer-logo {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+}
+
+body {
+    background-color: lightslategray;
+}
