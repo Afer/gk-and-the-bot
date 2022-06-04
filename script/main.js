@@ -7,7 +7,7 @@ var main = {
 
         $(".pages").css("display", "none");
 
-        if (path == '' || path.indexOf('index') != -1 || path.indexOf('home') != -1) {
+        if (path == '' || path == '/' || path.indexOf('index') != -1 || path.indexOf('home') != -1) {
             $(".home").css("display", "block");
         }
         else if (path.indexOf("privacy-policy") != -1) {
