@@ -7,9 +7,10 @@
 }
 
 .logo {
-    background: url(../images/logo.png) no-repeat;
+    background-image: url(../images/logo.png) !important;
     background-size: 100%;
     background-position: 50% 50%;
+    background-repeat: no-repeat;
 }
 
 .nav-item {
@@ -26,8 +27,15 @@
     flex-wrap: wrap;
 }
 
+.body-background {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 img {
     width: 100%;
+    max-width: 1024px;
 }
 
 #footer-logo {
@@ -38,4 +46,8 @@ img {
 
 body {
     background-color: lightslategray;
+}
+
+.desc {
+    color: white;
 }
