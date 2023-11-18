@@ -1,53 +1,72 @@
-.container {
-    display: flex;
-    align-items: center;
-    flex-wrap: nowrap;
-    flex-direction: row;
-    width: 100%;
-}
-
-.logo {
-    background-image: url(../images/logo.png) !important;
-    background-size: 100%;
-    background-position: 50% 50%;
-    background-repeat: no-repeat;
-}
-
-.nav-item {
-    width: 50px;
-    height: 42px;
-    line-height: 42px;
-}
-
-#header {
-    height: 50px;
-}
-
-#body-container {
-    flex-wrap: wrap;
-}
-
-.body-background {
-    width: 100%;
+.main-container {
+    background-color: #d3d3d3;
+    padding: 20px;
+    border-radius: 10px;
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    text-align: center;
 }
 
-img {
-    width: 100%;
-    max-width: 1024px;
-}
-
-#footer-logo {
-    width: 200px;
-    height: 200px;
-    margin: 0 auto;
+.content {
+    text-align: left;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 body {
     background-color: lightslategray;
+    background-image: url('background.jpg');
+    background-size: 100% 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    position: relative;
+    margin: 0;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
-.desc {
+.floating-text {    
+    position: relative;
+    background-image: url(kaboom.png);
+    background-size: 100% 100%;
+    width: 500px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
     color: white;
+    background-position: 50%;
+    box-sizing: border-box;
+    padding: 185px 150px 126px;
+    text-align: center;
+    z-index: -1;
+    transform: rotate(10deg);
+    margin-top: -100px;
+    margin-bottom: -53px;
+}
+
+#no1 {    
+    transform: rotate(-10deg);
+}
+
+#no2 {
+}
+
+.iamges {
+    display: flex;
+    justify-content: center;
+}
+
+.iamges > img {
+    width: 33%;
+}
+
+h1 {
+    margin: 0;
 }
