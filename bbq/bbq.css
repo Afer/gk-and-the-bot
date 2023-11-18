@@ -80,4 +80,5 @@ h1 {
     background-image: url(corn.png);
     background-size: 50px;
     background-repeat: no-repeat;
+    background-position: 100%;
 }
