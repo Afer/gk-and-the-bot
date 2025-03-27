@@ -72,7 +72,7 @@ TEST_ONLY = {
     useTestObj: true,
     fullyRandom: true,
     testObj: {
-        "bread": 4,
+        "bread": 3,
         "main": 2,
         "cheese": 4,
         "sauce": 0,
