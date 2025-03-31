@@ -1,8 +1,8 @@
 const ingredients = {
     "bread": [
-        {"name": "Rye", "img": "./ingredient-pics/Rye.png"},
-        {"name": "Sourdough", "img": "./ingredient-pics/Sourdough.png"},
-        {"name": "Panini", "img": "./ingredient-pics/Panini.png"},
+        {"name": "Marbled Rye", "img": "./ingredient-pics/marbled-rye.png"},
+        {"name": "Sourdough", "img": "./ingredient-pics/sourdough.png"},
+        {"name": "Panini", "img": "./ingredient-pics/panini.png"},
         {"name": "Wheat", "img": "./ingredient-pics/Wheat.png"},
         {"name": "Italian Roll", "img": "./ingredient-pics/italian-roll.png"}
     ],
@@ -31,45 +31,46 @@ const ingredients = {
     ],
     "roll twice?": {},
     "roughage": [
-        {"name": "Pickled Asparagus", "img": "./ingredient-pics/Pickled Asparagus.png"},
-        {"name": "Cucumber", "img": "./ingredient-pics/Cucumber.png"},
+        {"name": "Pickled Asparagus", "img": "./ingredient-pics/pickled-asparagus.png"},
+        {"name": "Cucumber", "img": "./ingredient-pics/cucumber.png"},
         {"name": "Green Leaf Lettuce", "img": "./ingredient-pics/green-leaf-lettuce.png"},
-        {"name": "Romaine Lettuce", "img": "./ingredient-pics/Romaine Lettuce.png"},
-        {"name": "Tomato", "img": "./ingredient-pics/Tomato.png"},
+        {"name": "Romaine Lettuce", "img": "./ingredient-pics/romaine-lettuce.png"},
+        {"name": "Tomato", "img": "./ingredient-pics/tomato.png"},
         {"name": "Pickles", "img": "./ingredient-pics/Pickles.png"},
-        {"name": "Green Onion", "img": "./ingredient-pics/Green Onion.png"},
-        {"name": "Green Pepper", "img": "./ingredient-pics/Green Pepper.png"},
-        {"name": "Red Pepper", "img": "./ingredient-pics/Red Pepper.png"},
-        {"name": "Roasted Red Pepper", "img": "./ingredient-pics/Roasted Red Pepper.png"},
-        {"name": "Onion", "img": "./ingredient-pics/Onion.png"},
-        {"name": "Carmalized Onion", "img": "./ingredient-pics/Carmalized Onion.png"}
+        {"name": "Green Onion", "img": "./ingredient-pics/green-onion.png"},
+        {"name": "Green Pepper", "img": "./ingredient-pics/green-pepper.png"},
+        {"name": "Red Pepper", "img": "./ingredient-pics/red-pepper.png"},
+        {"name": "Roasted Red Pepper", "img": "./ingredient-pics/roasted-red-pepper.png"},
+        {"name": "Onion", "img": "./ingredient-pics/onion.png"},
+        {"name": "Carmalized Onion", "img": "./ingredient-pics/carmalized-onion.png"}
     ],
 
     "wildcard": [
-        {"name": "Crispy Onions", "img": "./ingredient-pics/Crispy Onions.png"},
-        {"name": "Potato Chips", "img": "./ingredient-pics/Potato Chips.png"},
-        {"name": "French Fries", "img": "./ingredient-pics/French Fries.png"},
-        {"name": "Steak Seasoning", "img": "./ingredient-pics/Steak Seasoning.png"}
+        {"name": "Crispy Onions", "img": "./ingredient-pics/crispy-onions.png"},
+        {"name": "Potato Chips", "img": "./ingredient-pics/potato-chips.png"},
+        {"name": "French Fries", "img": "./ingredient-pics/french-fries.png"},
+        {"name": "Steak Seasoning", "img": "./ingredient-pics/steak-seasoning.png"}
     ],
 
     "condiments": [
-        {"name": "Ketchup", "img": "./ingredient-pics/Ketchup.png"},
-        {"name": "Spicy Brown Mustard", "img": "./ingredient-pics/Spicy Brown Mustard.png"},
-        {"name": "Kewpie Mayo", "img": "./ingredient-pics/Kewpie Mayo.png"},
+        {"name": "Ketchup", "img": "./ingredient-pics/ketchup.png"},
+        {"name": "Mustard", "img": "./ingredient-pics/mustard.png"},
+        {"name": "Spicy Brown Mustard", "img": "./ingredient-pics/spicy-brown-mustard.png"},
+        {"name": "Kewpie Mayo", "img": "./ingredient-pics/kewpie-mayo.png"},
         {"name": "Mayonaise", "img": "./ingredient-pics/mayonaise.png"},
-        {"name": "Arby's Sauce", "img": "./ingredient-pics/Arby's Sauce.png"},
-        {"name": "Chik-fil-a Sauce", "img": "./ingredient-pics/Chik-fil-a Sauce.png"}
+        {"name": "Arby's Sauce", "img": "./ingredient-pics/arbys-sauce.png"},
+        {"name": "Chik-fil-a Sauce", "img": "./ingredient-pics/chik-fil-a-sauce.png"}
     ],
 
     "sauce": [
         {"name": "Mango Salsa", "img": "./ingredient-pics/mango-salsa.png"},
-        {"name": "Bunker Sauce?", "img": "./ingredient-pics/Bunker Sauce?.png"},
-        {"name": "Sweet and Spicy Sauce", "img": "./ingredient-pics/Sweet and Spicy Sauce.png"}
+        {"name": "Burger Sauce", "img": "./ingredient-pics/burger-sauce.png"},
+        {"name": "Sweet and Spicy Sauce", "img": "./ingredient-pics/sweet-and-spicy-sauce.png"}
     ]
 }
 
 TEST_ONLY = {
-    useTestObj: true,
+    useTestObj: false,
     fullyRandom: true,
     testObj: {
         "bread": 3,
@@ -124,7 +125,7 @@ $(function() {
         // build an html template for the sandwhich
         let sandwhichHtml = '<div class="sandwhich">';
         for (let i = 0; i < sandwhich.length; i++) {
-            sandwhichHtml += `<div class="ingredient ${ingredientMap[i]} ${sandwhich[i].name.replaceAll(' ', '-')}">${sandwhich[i].name}</div>`;
+            sandwhichHtml += `<div class="ingredient ${ingredientMap[i]} ${sandwhich[i].name.replaceAll(' ', '-').replaceAll('\'', '')}">${sandwhich[i].name}</div>`;
         }
         
         // end with upsidedown bread
