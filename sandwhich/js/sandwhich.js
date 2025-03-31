@@ -101,6 +101,8 @@ $(function() {
     let sandwhich = [];
     let data = ingredients;
 
+    $("#date-display").html(new Date().toLocaleDateString());
+
     // Get object from ingredients.json file
     //$.getJSON("./ingredients.json", function(data) {
         // get random bread item from ingredientMap
