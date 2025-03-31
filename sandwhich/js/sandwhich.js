@@ -1,21 +1,21 @@
 const ingredients = {
     "bread": [
-        {"name": "Marbled Rye", "img": "./ingredient-pics/marbled-rye.png"},
-        {"name": "Sourdough", "img": "./ingredient-pics/sourdough.png"},
-        {"name": "Panini", "img": "./ingredient-pics/panini.png"},
-        {"name": "Wheat", "img": "./ingredient-pics/Wheat.png"},
-        {"name": "Italian Roll", "img": "./ingredient-pics/italian-roll.png"}
+        {"name": "Marbled Rye", "img": "./ingredient-pics/marbled-rye.png", "savoryIndex": 0},
+        {"name": "Sourdough", "img": "./ingredient-pics/sourdough.png", "savoryIndex": 1},
+        {"name": "Panini", "img": "./ingredient-pics/panini.png", "savoryIndex": 1},
+        {"name": "Wheat", "img": "./ingredient-pics/Wheat.png", "savoryIndex": 0},
+        {"name": "Italian Roll", "img": "./ingredient-pics/italian-roll.png", "savoryIndex": 2}
     ],
 
     "main": [
-        {"name": "Salami", "img": "./ingredient-pics/Salami.png"},
-        {"name": "Bratwurst", "img": "./ingredient-pics/Bratwurst.png"},
-        {"name": "Ham", "img": "./ingredient-pics/ham-slice.png"},
-        {"name": "Turkey", "img": "./ingredient-pics/Turkey.png"},
-        {"name": "Roast Beef", "img": "./ingredient-pics/Roast Beef.png"},
-        {"name": "Steak", "img": "./ingredient-pics/Steak.png"},
-        {"name": "Grilled Chicken", "img": "./ingredient-pics/Grilled Chicken.png"},
-        {"name": "Fried Chicken", "img": "./ingredient-pics/Fried Chicken.png"}
+        {"name": "Salami", "img": "./ingredient-pics/Salami.png", "savoryIndex": 0},
+        {"name": "Bratwurst", "img": "./ingredient-pics/Bratwurst.png", "savoryIndex": 1},
+        {"name": "Ham", "img": "./ingredient-pics/ham-slice.png", "savoryIndex": 0},
+        {"name": "Turkey", "img": "./ingredient-pics/Turkey.png", "savoryIndex": 0},
+        {"name": "Roast Beef", "img": "./ingredient-pics/Roast Beef.png", "savoryIndex": 0},
+        {"name": "Steak", "img": "./ingredient-pics/Steak.png", "savoryIndex": 2},
+        {"name": "Grilled Chicken", "img": "./ingredient-pics/Grilled Chicken.png", "savoryIndex": 1},
+        {"name": "Fried Chicken", "img": "./ingredient-pics/Fried Chicken.png", "savoryIndex": 2}
     ],
 
     "cheese": [
@@ -29,7 +29,6 @@ const ingredients = {
         {"name": "Dill Havarti", "img": "./ingredient-pics/Dill Havarti.png"},
         {"name": "Feta", "img": "./ingredient-pics/Feta.png"}
     ],
-    "roll twice?": {},
     "roughage": [
         {"name": "Pickled Asparagus", "img": "./ingredient-pics/pickled-asparagus.png"},
         {"name": "Cucumber", "img": "./ingredient-pics/cucumber.png"},
@@ -44,14 +43,12 @@ const ingredients = {
         {"name": "Onion", "img": "./ingredient-pics/onion.png"},
         {"name": "Carmalized Onion", "img": "./ingredient-pics/carmalized-onion.png"}
     ],
-
     "wildcard": [
         {"name": "Crispy Onions", "img": "./ingredient-pics/crispy-onions.png"},
         {"name": "Potato Chips", "img": "./ingredient-pics/potato-chips.png"},
         {"name": "French Fries", "img": "./ingredient-pics/french-fries.png"},
         {"name": "Steak Seasoning", "img": "./ingredient-pics/steak-seasoning.png"}
     ],
-
     "condiments": [
         {"name": "Ketchup", "img": "./ingredient-pics/ketchup.png"},
         {"name": "Mustard", "img": "./ingredient-pics/mustard.png"},
@@ -61,9 +58,9 @@ const ingredients = {
         {"name": "Arby's Sauce", "img": "./ingredient-pics/arbys-sauce.png"},
         {"name": "Chik-fil-a Sauce", "img": "./ingredient-pics/chik-fil-a-sauce.png"}
     ],
-
     "sauce": [
         {"name": "Mango Salsa", "img": "./ingredient-pics/mango-salsa.png"},
+        {"name": "Buffalo Sauce", "img": "./ingredient-pics/buffalo-sauce.png"},
         {"name": "Burger Sauce", "img": "./ingredient-pics/burger-sauce.png"},
         {"name": "Sweet and Spicy Sauce", "img": "./ingredient-pics/sweet-and-spicy-sauce.png"}
     ]
@@ -100,18 +97,53 @@ function getRandomNumber(modifer, modulo) {
 }
 
 $(function() {
-    let ingredientMap = ["bread", "main", "cheese", "sauce", "condiments", "roughage"];//, "wildcard"];
+    let ingredientMap = ["bread", "main", "cheese", "roughage", "sauce", "condiments", "wildcard"];
     let sandwhich = [];
     let data = ingredients;
 
     // Get object from ingredients.json file
     //$.getJSON("./ingredients.json", function(data) {
-        // loop through ingredientMap
-        for (let i = 0; i < ingredientMap.length; i++) {
-            // Get random array element from data where the key is ingredientMap[i]
-            let ingredient = data[ingredientMap[i]][getRandomNumber(i, data[ingredientMap[i]].length)];
-            // Add ingredient to sandwhich
-            sandwhich.push(ingredient);
+        // get random bread item from ingredientMap
+        let bread = data[ingredientMap[0]][getRandomNumber(0, data[ingredientMap[0]].length)];
+        sandwhich.push(bread);
+
+        // Get a random main entry until we get one that has a savoryIndex of 1 or 2
+        let main = data[ingredientMap[1]][getRandomNumber(1, data[ingredientMap[1]].length)];
+        while (main.savoryIndex > bread.savoryIndex) {
+            main = data[ingredientMap[1]][getRandomNumber(1, data[ingredientMap[1]].length)];
+        }
+        sandwhich.push(main);
+
+        // get a random cheese and add it to the sandwhich
+        let cheese = data[ingredientMap[2]][getRandomNumber(2, data[ingredientMap[2]].length)];
+        sandwhich.push(cheese);
+
+        // roughage
+        let roughage = data[ingredientMap[3]][getRandomNumber(3, data[ingredientMap[3]].length)];
+        sandwhich.push(roughage);
+
+        // add a second "roughage" ingredient with a 25% chance
+        if (Math.random() < 0.25) {
+            let roughage2 = data[ingredientMap[3]][getRandomNumber(4, data[ingredientMap[3]].length)];
+            sandwhich.push(roughage2);
+        }
+
+        // add a sauce ingredient if the bread.savoryIndex plus the main.savoryIndex is greater than 1
+        if (bread.savoryIndex + main.savoryIndex > 1) {
+            let sauce = data[ingredientMap[4]][getRandomNumber(5, data[ingredientMap[4]].length)];
+            sandwhich.push(sauce);
+        }
+
+        // add a condiment ingredient if the bread.savoryIndex plus the main.savoryIndex is less than or equal 1
+        if (bread.savoryIndex + main.savoryIndex <= 1) {
+            let condiment = data[ingredientMap[5]][getRandomNumber(6, data[ingredientMap[5]].length)];
+            sandwhich.push(condiment);
+        }
+
+        // add a wildcard ingredient with a 15% chance
+        if (Math.random() < 0.15) {
+            let wildcard = data[ingredientMap[6]][getRandomNumber(7, data[ingredientMap[6]].length)];
+            sandwhich.push(wildcard);
         }
 
         if (TEST_ONLY.useTestObj) {
