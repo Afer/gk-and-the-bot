@@ -68,7 +68,7 @@ const ingredients = {
 
 TEST_ONLY = {
     useTestObj: false,
-    fullyRandom: true,
+    fullyRandom: false,
     testObj: {
         "bread": 3,
         "main": 2,
@@ -123,7 +123,7 @@ $(function() {
         sandwhich.push(roughage);
 
         // add a second "roughage" ingredient with a 25% chance
-        if (Math.random() < 0.25) {
+        if (getRandomNumber(1234, 4) === 1) {
             let roughage2 = data[ingredientMap[3]][getRandomNumber(4, data[ingredientMap[3]].length)];
             sandwhich.push(roughage2);
         }
@@ -141,7 +141,7 @@ $(function() {
         }
 
         // add a wildcard ingredient with a 15% chance
-        if (Math.random() < 0.15) {
+        if (getRandomNumber(4321, 4) === 1) {
             let wildcard = data[ingredientMap[6]][getRandomNumber(7, data[ingredientMap[6]].length)];
             sandwhich.push(wildcard);
         }
