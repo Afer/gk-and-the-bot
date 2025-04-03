@@ -68,7 +68,7 @@ const ingredients = {
 
 TEST_ONLY = {
     useTestObj: false,
-    fullyRandom: true,
+    fullyRandom: false,
     testObj: {
         "bread": 3,
         "main": 2,
