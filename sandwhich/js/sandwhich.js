@@ -68,7 +68,7 @@ const ingredients = {
 
 TEST_ONLY = {
     useTestObj: false,
-    fullyRandom: false,
+    fullyRandom: true,
     testObj: {
         "bread": 3,
         "main": 2,
@@ -100,51 +100,52 @@ $(function() {
     let ingredientMap = ["bread", "main", "cheese", "roughage", "sauce", "condiments", "wildcard"];
     let sandwhich = [];
     let data = ingredients;
+    let modifier = 0;
 
     $("#date-display").html(new Date().toLocaleDateString());
 
     // Get object from ingredients.json file
     //$.getJSON("./ingredients.json", function(data) {
         // get random bread item from ingredientMap
-        let bread = data[ingredientMap[0]][getRandomNumber(0, data[ingredientMap[0]].length)];
+        let bread = data[ingredientMap[0]][getRandomNumber(modifier++, data[ingredientMap[0]].length)];
         sandwhich.push(bread);
 
         // Get a random main entry until we get one that has a savoryIndex of 1 or 2
-        let main = data[ingredientMap[1]][getRandomNumber(1, data[ingredientMap[1]].length)];
+        let main = data[ingredientMap[1]][getRandomNumber(modifier++, data[ingredientMap[1]].length)];
         while (main.savoryIndex > bread.savoryIndex) {
-            main = data[ingredientMap[1]][getRandomNumber(1, data[ingredientMap[1]].length)];
+            main = data[ingredientMap[1]][getRandomNumber(modifier++, data[ingredientMap[1]].length)];
         }
         sandwhich.push(main);
 
         // get a random cheese and add it to the sandwhich
-        let cheese = data[ingredientMap[2]][getRandomNumber(2, data[ingredientMap[2]].length)];
+        let cheese = data[ingredientMap[2]][getRandomNumber(modifier++, data[ingredientMap[2]].length)];
         sandwhich.push(cheese);
 
         // roughage
-        let roughage = data[ingredientMap[3]][getRandomNumber(3, data[ingredientMap[3]].length)];
+        let roughage = data[ingredientMap[3]][getRandomNumber(modifier++, data[ingredientMap[3]].length)];
         sandwhich.push(roughage);
 
         // add a second "roughage" ingredient with a 25% chance
-        if (getRandomNumber(1234, 4) === 1) {
-            let roughage2 = data[ingredientMap[3]][getRandomNumber(4, data[ingredientMap[3]].length)];
+        if (getRandomNumber(modifier++, 4) === 1) {
+            let roughage2 = data[ingredientMap[3]][getRandomNumber(modifier++, data[ingredientMap[3]].length)];
             sandwhich.push(roughage2);
         }
 
         // add a sauce ingredient if the bread.savoryIndex plus the main.savoryIndex is greater than 1
         if (bread.savoryIndex + main.savoryIndex > 1) {
-            let sauce = data[ingredientMap[4]][getRandomNumber(5, data[ingredientMap[4]].length)];
+            let sauce = data[ingredientMap[4]][getRandomNumber(modifier++, data[ingredientMap[4]].length)];
             sandwhich.push(sauce);
         }
 
         // add a condiment ingredient if the bread.savoryIndex plus the main.savoryIndex is less than or equal 1
         if (bread.savoryIndex + main.savoryIndex <= 1) {
-            let condiment = data[ingredientMap[5]][getRandomNumber(6, data[ingredientMap[5]].length)];
+            let condiment = data[ingredientMap[5]][getRandomNumber(modifier++, data[ingredientMap[5]].length)];
             sandwhich.push(condiment);
         }
 
         // add a wildcard ingredient with a 15% chance
-        if (getRandomNumber(4321, 4) === 1) {
-            let wildcard = data[ingredientMap[6]][getRandomNumber(7, data[ingredientMap[6]].length)];
+        if (getRandomNumber(modifier++, 4) === 1) {
+            let wildcard = data[ingredientMap[6]][getRandomNumber(modifier++, data[ingredientMap[6]].length)];
             sandwhich.push(wildcard);
         }
 
