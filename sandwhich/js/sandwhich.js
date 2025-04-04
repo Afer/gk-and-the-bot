@@ -82,7 +82,10 @@ TEST_ONLY = {
 
 function getRandomNumber(modifer, modulo) {
     // get todays date at 12AM
-    let seed = new Date().setHours(0,0,0,0) + modifer;
+    let today = new Date();
+    let seed = today.getDay() * today.getMonth() * today.getFullYear() * 1987;
+    // add the modifer to the seed
+    seed += modifer;
 
     if (TEST_ONLY.fullyRandom) {
         seed = Math.random()*10000;
