@@ -10,6 +10,10 @@ h1, #date-display {
     margin-bottom: 0;
 }
 
+#sandwhich {
+    align-self: flex-start;
+}
+
 #date-display {
     font-size: 3vw;
     margin-bottom: 20px;
