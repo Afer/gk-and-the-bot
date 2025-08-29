@@ -1,0 +1,23 @@
+<html>
+    <head>
+		<meta name='viewport' content='width = device-width, initial-scale=1, maximum-scale=1' />
+
+		<script type="text/javascript" src="../script/jquery9.js"></script>
+		<script type="text/javascript" src="../script/main.js"></script>
+
+		<link type="text/css" href="house-warming.css" rel="stylesheet"></link>
+    </head>
+
+    <body>
+        <div id="corn"></div>
+
+        <script>
+            // loop from 1 to 6 appending an image with path images/corn1.png where 1 is the loop variable
+            for (let i = 1; i <= 7; i++) {
+                let img = document.createElement('img');
+                img.src = `images/corn${i}.png`;
+                document.getElementById('corn').appendChild(img);
+            }
+        </script>
+    </body>
+</html>
