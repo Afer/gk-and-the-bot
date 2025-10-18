@@ -1,0 +1,155 @@
+/* Typography */
+:root {
+    --bg: #0f1114;
+    --ink: #e6e6e6;
+    --muted: #a6abb3;
+    --accent: #b7c7d6;
+    --gold: #c9a86a;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Work Sans', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+/* Hero Slideshow */
+.hero {
+    position: relative;
+    height: 100svh;
+    min-height: 560px;
+    overflow: hidden;
+}
+
+.slides {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    inset: 0;
+}
+
+.slides > li {
+    position: absolute;
+    inset: 0;
+    background-image: var(--bg);
+    background-image: var(--bg), var(--bg);
+    background: #000;
+    background-image: var(--bg);
+}
+
+/* Each slide uses a pseudo-element for the image to enable crossfade */
+.slides > li::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: var(--bg);
+    background-image: var(--bg), var(--bg);
+    background-image: var(--bg);
+}
+
+/* Override background via custom property set inline */
+.slides > li,
+.slides > li::before {
+    background-image: var(--bg);
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* Crossfade sequence */
+.slides > li { opacity: 0; animation: fade 40s infinite; }
+.slides > li:nth-child(1) { animation-delay: 0s; }
+.slides > li:nth-child(2) { animation-delay: 8s; }
+.slides > li:nth-child(3) { animation-delay: 16s; }
+.slides > li:nth-child(4) { animation-delay: 24s; }
+.slides > li:nth-child(5) { animation-delay: 32s; }
+
+@keyframes fade {
+    0% { opacity: 0 }
+    6% { opacity: 1 }
+    25% { opacity: 1 }
+    31% { opacity: 0 }
+    100% { opacity: 0 }
+}
+
+/* Overlay Title */
+.overlay {
+    position: absolute;
+    inset: 0;
+    place-items: center;
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0.15) 40%, rgba(0,0,0,0.6));
+}
+
+.brand {
+    margin: 0;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 600;
+    font-size: clamp(2.4rem, 5vw, 5rem);
+    letter-spacing: 0.04em;
+    color: var(--ink);
+}
+
+.tag {
+    margin-top: 0.5rem;
+}
+
+/* Details Section */
+.details {
+    display: grid;
+    place-items: center;
+    padding: 6rem 1.25rem 4rem;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.02), rgba(255,255,255,0));
+}
+
+.content {
+    width: min(840px, 92vw);
+}
+
+.content h2 {
+    margin: 0 0 0.75rem 0;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 600;
+    font-size: clamp(1.6rem, 3.6vw, 2.4rem);
+    letter-spacing: 0.02em;
+}
+
+.content p {
+    margin: 0 0 1rem 0;
+    line-height: 1.7;
+    color: var(--accent);
+    font-size: clamp(1rem, 2.1vw, 1.125rem);
+}
+
+.rsvp {
+    margin-top: 1.5rem;
+    font-weight: 500;
+    color: var(--ink);
+}
+
+.note {
+    color: var(--muted);
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem 3rem;
+    color: var(--muted);
+}
+
+/* Prefer-reduced-motion: pause animation */
+@media (prefers-reduced-motion: reduce) {
+    .slides > li { animation: none; opacity: 1; }
+    .slides > li:not(:first-child) { display: none; }
+}
+
+
